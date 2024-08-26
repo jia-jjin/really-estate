@@ -112,6 +112,10 @@ const Topbar = () => {
     }
   }
 
+  if (currentPath.startsWith('/login') || currentPath.startsWith('/signup')){
+    return <></>
+  }
+
   return (
     <Navbar maxWidth="full" className="border-b-slate-400 border-b" isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
@@ -176,20 +180,20 @@ const Topbar = () => {
         {menuItems.map((item, index) => {
           return (
             <NavbarItem className="flex justify-center" isActive={item.name !== "All Properties" ? item.link === currentPath : currentPath.includes('property/') || currentPath.includes('property_list/all')} key={`${item.name}-${index}`}>
-              <NextUILink color={item.name !== "All Properties" ? item.link === currentPath ? "secondary" : "foreground" : currentPath.includes('property/') || currentPath.includes('property_list/all') ? "secondary" : "foreground"}>
-                <Link scroll={true} href={item.link}>
+              {/* <NextUILink color={item.name !== "All Properties" ? item.link === currentPath ? "secondary" : "foreground" : currentPath.includes('property/') || currentPath.includes('property_list/all') ? "secondary" : "foreground"}> */}
+                <Link className={item.name !== "All Properties" ? item.link === currentPath ? "text-[#7132cc]" : "text-black" : currentPath.includes('property/') || currentPath.includes('property_list/all') ? "text-[#7132cc]" : "text-black"} scroll={true} href={item.link}>
                   {item.name}
                 </Link>
-              </NextUILink>
+              {/* </NextUILink> */}
             </NavbarItem>
           )
         })}
         {userType == 'agent' ? <NavbarItem className="flex justify-center" isActive={"/sell" === currentPath} key={`sell`}>
-          <NextUILink color={"/sell" === currentPath ? "secondary" : "foreground"}>
-            <Link scroll={true} href={"/sell"}>
+          {/* <NextUILink color={"/sell" === currentPath ? "secondary" : "foreground"}> */}
+            <Link scroll={true} href={"/sell"} color={"/sell" === currentPath ? "text-[#7132cc]" : "text-black"}>
               Sell a Property
             </Link>
-          </NextUILink>
+          {/* </NextUILink> */}
         </NavbarItem> : <></>}
 
       </NavbarContent>
@@ -248,11 +252,11 @@ const Topbar = () => {
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarItem className="flex justify-center h-[50px] w-fit" isActive={item.name !== "All Properties" ? item.link === currentPath : currentPath.includes('property/') || currentPath.includes('property_list/all')} key={`${item.name}-${index}`}>
-            <NextUILink color={item.name !== "All Properties" ? item.link === currentPath ? "secondary" : "foreground" : currentPath.includes('property/') || currentPath.includes('property_list/all') ? "secondary" : "foreground"}>
-              <Link scroll={true} href={item.link} onClick={() => setIsMenuOpen(false)}>
+            {/* <NextUILink > */}
+              <Link color={item.name !== "All Properties" ? item.link === currentPath ? "text-[#7132cc]" : "text-black" : currentPath.includes('property/') || currentPath.includes('property_list/all') ? "text-[#7132cc]" : "text-black"} scroll={true} href={item.link} onClick={() => setIsMenuOpen(false)}>
                 {item.name}
               </Link>
-            </NextUILink>
+            {/* </NextUILink> */}
           </NavbarItem>
         ))}
       </NavbarMenu>

@@ -58,7 +58,7 @@ export default function Login() {
     }
 
     return (
-        <div className=" flex flex-col justify-center items-center bg-white p-2 py-6">
+        <div className=" flex flex-col justify-center items-center bg-white p-2 py-6 pb-12">
             <Link scroll={true} href="/" >
                 <Image src="/reallyestate-logo.png" height={300} width={300} className="mx-auto" alt="app-logo" />
             </Link>
