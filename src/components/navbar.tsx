@@ -34,11 +34,6 @@ const Topbar = () => {
   const [profileIsLoading, setProfileIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const possiblePropertyListPaths = ["buy", "all", "rent", "new_launches"]
-  if (currentPath.includes('/property_list')) {
-    if (!possiblePropertyListPaths.includes(currentPath.split('/')[2])) {
-      return <></>
-    }
-  }
 
   const menuItems = [
     {
@@ -111,7 +106,11 @@ const Topbar = () => {
     });
   }
 
-
+  if (currentPath.includes('/property_list')) {
+    if (!possiblePropertyListPaths.includes(currentPath.split('/')[2])) {
+      return <></>
+    }
+  }
 
   return (
     <Navbar maxWidth="full" className="border-b-slate-400 border-b" isMenuOpen={isMenuOpen}
