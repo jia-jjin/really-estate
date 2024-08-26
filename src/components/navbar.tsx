@@ -77,9 +77,9 @@ const Topbar = () => {
     onLoad()
   }, []);
 
-  // useEffect(() => {
-  //   onLoad()
-  // }, [auth]);
+  useEffect(() => {
+    onLoad()
+  }, [auth.currentUser]);
 
   const onLogoutHandler = () => {
     Swal.fire({
