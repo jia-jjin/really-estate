@@ -283,6 +283,8 @@ export default function Settings() {
         }
     }
 
+    console.log(auth.currentUser)
+
     if (profileIsLoading || reservationsIsLoading)
         return (
             <div className="min-h-screen flex justify-center items-center">
@@ -315,9 +317,9 @@ export default function Settings() {
                                         <div key={'reservation' + index} className='rounded-xl w-full bg-slate-300 mb-3 shadow-md border border-black'>
                                             <div className="flex justify-between">
                                                 <div className="p-6">
-                                                    <h1 className="text-xl font-semibold underline underline-offset-2">Property: {reservation.property.name}</h1>
+                                                    <h1 className="text-xl font-semibold underline underline-offset-2">Property: {reservation.property.name || "(Property deleted)"}</h1>
                                                     <div className="mt-2">
-                                                        {userType == "user" ? <h1 className="">Agent: <span className="font-semibold">{reservation.agent.name}</span></h1> : <h1 className="">User: <span className="font-semibold">{reservation.user.name}</span></h1>}
+                                                        {userType == "user" ? <h1 className="">Agent: <span className="font-semibold">{reservation.agent.name}</span></h1> : <h1 className="">User: <span className="font-semibold">{reservation.user.name || "(User deleted)"}</span></h1>}
                                                         <h1>Date created: <span className="font-semibold">{moment(reservation.dateCreated).format('DD/MM/YYYY')}</span></h1>
                                                         {reservation.status == "Cancelled" && <div className="mt-2">
                                                             <h1>Reason of cancellation: </h1>

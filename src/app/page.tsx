@@ -22,48 +22,49 @@ export default function Page() {
                     <span className="relative text-white">surprises</span>
                 </span>!
             </h1>
-            <div className="container mx-auto px-2 sm:mt-0 mt-8">
-                <div className='sm:block hidden [perspective:800px] group w-2/3 relative'>
-                    <div className="shadow-xl rounded-xl h-[500px] md:h-[400px] bg-yellow-400 group-hover:bg-yellow-500 duration-300 group-hover:[transform:rotateY(5deg)] ">
-                    </div>
-                    <div className="shadow-xl rounded-xl h-[500px] md:h-[400px] w-full bg-slate-500 group-hover:bg-slate-400 duration-300 group-hover:[scale:0.9] group-hover:[transform:rotateY(5deg)] group-hover:top-0 top-2 left-2 absolute">
-                        <div className="size-full p-8 flex flex-col justify-center group-hover:justify-center gap-6 duration-300">
-                            <h1 className='text-4xl text-white font-bold'>Looking to buy or rent a new property?</h1>
-                            <div className='group-hover:block hidden space-y-8'>
-                                <h1 className='text-5xl duration-300 text-yellow-300 drop-shadow-lg font-bold'>Explore over 10 properties on our webpage!</h1>
-                                <div className="flex gap-2">
-                                    <Link href={'/property_list/buy'} scroll={true}>
-                                        <div className='hover:scale-105 cursor-pointer rounded-md border-2 bg-yellow-300 border-yellow-500 hover:bg-yellow-200 hover:border-yellow-400 duration-300 flex items-center px-3 py-2 relative w-[80px] h-[40px] group/edit overflow-hidden'>
-                                            <button className='text-sm font-semibold focus-visible:outline left-7 text-nowrap absolute duration-300 group-hover/edit:left-[200px]'>
-                                                Buy
-                                            </button>
-                                            <div className='-left-14 absolute duration-300 group-hover/edit:left-7'>🏠</div>
-                                        </div>
-                                    </Link>
-                                    <Link href={'/property_list/rent'} scroll={true}>
-                                        <div className='hover:scale-105 cursor-pointer rounded-md border-2 bg-yellow-300 border-yellow-500 hover:bg-yellow-200 hover:border-yellow-400 duration-300 flex items-center px-3 py-2 relative w-[80px] h-[40px] group/edit overflow-hidden'>
-                                            <button className='text-sm font-semibold focus-visible:outline left-6 text-nowrap absolute duration-300 group-hover/edit:left-[200px]'>
-                                                Rent
-                                            </button>
-                                            <div className='-left-14 absolute duration-300 group-hover/edit:left-7'>🏠</div>
-                                        </div>
-                                    </Link>
+            <div className="container mx-auto px-2 sm:mt-0 mt-8 relative overflow-x-clip">
+                <div className='sm:block hidden [perspective:800px] group relative'>
+                    <div className="w-2/3 relative">
+                        <div className="shadow-xl rounded-xl h-[500px] md:h-[400px] bg-yellow-400 group-hover:bg-yellow-500 duration-300 group-hover:[transform:rotateY(5deg)] ">
+                        </div>
+                        <div className="shadow-xl rounded-xl h-[500px] md:h-[400px] w-full bg-slate-500 group-hover:bg-slate-400 duration-300 group-hover:[scale:0.9] group-hover:[transform:rotateY(5deg)] group-hover:top-0 top-2 left-2 absolute">
+                            <div className="size-full p-8 flex flex-col justify-center group-hover:justify-center gap-6 duration-300">
+                                <h1 className='xs:text-4xl text-2xl text-white font-bold'>Looking to buy or rent a new property?</h1>
+                                <div className='group-hover:block hidden space-y-8'>
+                                    <h1 className='xs:text-5xl text-3xl duration-300 text-yellow-300 drop-shadow-lg font-bold'>Explore over 10 properties on our webpage!</h1>
+                                    <div className="flex gap-2">
+                                        <Link href={'/property_list/buy'} scroll={true}>
+                                            <div className='hover:scale-105 cursor-pointer rounded-md border-2 bg-yellow-300 border-yellow-500 hover:bg-yellow-200 hover:border-yellow-400 duration-300 flex items-center px-3 py-2 relative w-[80px] h-[40px] group/edit overflow-hidden'>
+                                                <button className='text-sm font-semibold focus-visible:outline left-7 text-nowrap absolute duration-300 group-hover/edit:left-[200px]'>
+                                                    Buy
+                                                </button>
+                                                <div className='-left-14 absolute duration-300 group-hover/edit:left-7'>🏠</div>
+                                            </div>
+                                        </Link>
+                                        <Link href={'/property_list/rent'} scroll={true}>
+                                            <div className='hover:scale-105 cursor-pointer rounded-md border-2 bg-yellow-300 border-yellow-500 hover:bg-yellow-200 hover:border-yellow-400 duration-300 flex items-center px-3 py-2 relative w-[80px] h-[40px] group/edit overflow-hidden'>
+                                                <button className='text-sm font-semibold focus-visible:outline left-6 text-nowrap absolute duration-300 group-hover/edit:left-[200px]'>
+                                                    Rent
+                                                </button>
+                                                <div className='-left-14 absolute duration-300 group-hover/edit:left-7'>🏠</div>
+                                            </div>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className='rounded-2xl absolute top-0 left-0 -z-10 scale-50 group-hover:[scale:2.8] [perspective:300px] group-hover:top-32 group-hover:left-20 md:group-hover:left-44 duration-300'>
-                        <Image height={1000} width={1000} src="/home-hero-bg.jpeg" alt="" className='group-hover:ms-[200px] object-cover size-full rounded-2xl [transform:rotateY(0)] duration-300 group-hover:[transform:rotateY(-5deg)] shadow-xl' />
+                        </div></div>
+                    <div className='rounded-2xl absolute -top-20 -z-10 scale-50 right-80 opacity-0 group-hover:opacity-100 group-hover:[scale:1.5] [perspective:400px] group-hover:top-0 group-hover:right-0 md:group-hover:right-0 duration-300'>
+                        <Image height={1000} width={1000} src="/home-hero-bg.jpeg" alt="" className='group-hover:ms-24 object-cover size-full rounded-2xl [transform:rotateY(0)] duration-300 group-hover:[transform:rotateY(-5deg)] shadow-xl' />
                     </div>
                 </div>
                 <div className="sm:hidden block relative">
-                    <div className="shadow-xl rounded-xl h-[400px] bg-yellow-500 duration-300">
-                    </div>
-                    <div className="shadow-xl rounded-xl w-full bg-slate-400 duration-300 top-0 scale-95 absolute z-10">
+                    {/* <div className="shadow-xl rounded-xl h-[400px] bg-yellow-500 duration-300">
+                    </div> */}
+                    <div className="shadow-xl rounded-xl w-full bg-slate-400 duration-300 top-0 z-10 border-5 border-yellow-500">
                         <div className="size-full p-8 flex flex-col justify-center gap-6 duration-300">
-                            <h1 className='text-4xl text-white font-bold'>Looking to buy or rent a new property?</h1>
+                            <h1 className='text-2xl text-white font-bold'>Looking to buy or rent a new property?</h1>
                             <div className='space-y-8'>
-                                <h1 className='text-5xl duration-300 text-yellow-300 drop-shadow-lg font-bold'>Explore over 10 properties on our webpage!</h1>
+                                <h1 className='text-4xl duration-300 text-yellow-300 drop-shadow-lg font-bold'>Explore over 10 properties on our webpage!</h1>
                                 <div className="flex gap-2">
                                     <Link href={'/property_list/buy'} scroll={true}>
                                         <button className='bg-yellow-300 border-yellow-500 py-2 px-5 border rounded-md text-sm font-semibold focus-visible:outline text-nowrap duration-300'>

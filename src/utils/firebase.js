@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation"
 import { auth, provider, db } from '@/firebase/config'
-import { collection, addDoc, doc, query, where, getDocs , getDoc} from "firebase/firestore"
+import { collection, addDoc, doc, query, where, getDocs, getDoc } from "firebase/firestore"
 
 import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithRedirect, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { cookies } from "next/headers"
@@ -31,7 +31,7 @@ import { revalidatePath } from "next/cache"
 
 
 
-export const checkUserLogin = async (email, name, image) => {
+export const checkUserLogin = async (email, name, image, uid) => {
     // console.log('checking if there exists a user session')
     // const user = auth.currentUser;
     // if (user) {
@@ -44,7 +44,8 @@ export const checkUserLogin = async (email, name, image) => {
     }))[0]
     if (!userInfo) {
         const username = name.split(' ').join('') + Math.floor((Math.random() * 10000))
-        await addDoc(collectionRef, {
+        const userRef = doc(db, 'users', uid);
+        await setDoc(userRef, {
             username: username,
             name: name,
             email: email,
@@ -55,7 +56,7 @@ export const checkUserLogin = async (email, name, image) => {
         return await checkUserLogin(email, name)
     } else {
         // console.log("user found!", userInfo)
-        return userInfo 
+        return userInfo
     }
     // } else {
     //     console.log('no user logged in')
@@ -66,9 +67,9 @@ export const checkUserLogin = async (email, name, image) => {
 
 }
 
-export const setCookies = async (emailz = '', namez = '', imagez = '', username = '', id = '') => {
+export const setCookies = async (emailz = '', namez = '', imagez = '', username = '', uid = '') => {
     try {
-        const { id, name, username, email, image, type, phone_number } = await checkUserLogin(emailz, namez, imagez)
+        const { id, name, username, email, image, type, phone_number } = await checkUserLogin(emailz, namez, imagez, uid)
         cookies().set('email', email)
         cookies().set('username', username)
         cookies().set('name', name)
@@ -90,7 +91,7 @@ export const getCookies = () => {
     const image = cookies().get('image') ? cookies().get('image').value : ''
     const type = cookies().get('type') ? cookies().get('type').value : ''
     const phone_number = cookies().get('phone_number') ? cookies().get('phone_number').value : ''
-    return { email, name, username, id , image, type, phone_number}
+    return { email, name, username, id, image, type, phone_number }
 }
 
 export const removeCookies = () => {

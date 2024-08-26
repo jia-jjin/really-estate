@@ -2,7 +2,7 @@
 
 import { redirectToHome, setCookies } from "@/utils/firebase"
 import { signInWithPopup, createUserWithEmailAndPassword, signOut } from "firebase/auth"
-import { collection, addDoc } from "firebase/firestore"
+import { collection, addDoc, doc, setDoc } from "firebase/firestore"
 import { useState } from "react"
 import Swal from "sweetalert2"
 import { FormEvent } from "react"
@@ -22,12 +22,14 @@ export default function SignUp() {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-            const collectionRef = collection(db, 'users');
-            await addDoc(collectionRef, {
+            const userRef = doc(db, 'users', user.uid);
+            await setDoc(userRef, {
                 username: username,
                 name: name,
                 email: email,
-                image: image
+                image: image,
+                type: "user",
+                phone_number: ""
             });
             return { status: 200, msg: "Sign up successful.", email: email };
         } catch (error: any) {
@@ -56,16 +58,17 @@ export default function SignUp() {
         } catch (e: any) {
             console.error({ error: e.error, msg: e.message })
         }
-    
+
     }
 
     async function onGoogleSignIn(e: any) {
         try {
             await signInWithPopup(auth, provider)
+            const uid = auth.currentUser?.uid || "test"
             const email = auth.currentUser?.email || 'test@gmail.com'
             const name = auth.currentUser?.displayName || 'tester'
             const image = auth.currentUser?.photoURL || 'https://images.macrumors.com/t/n4CqVR2eujJL-GkUPhv1oao_PmI=/1600x/article-new/2019/04/guest-user-250x250.jpg'
-            await setCookies(email, name, image)
+            await setCookies(email, name, image, uid)
             redirectToHome()
         } catch (e: any) {
             console.log({ error: e.error, msg: e.message })

@@ -47,10 +47,11 @@ export default function Login() {
         try {
             await signInWithPopup(auth, provider)
             // console.log(auth.currentUser)
+            const uid = auth.currentUser?.uid || "test"
             const email = auth.currentUser?.email || 'test@gmail.com'
             const name = auth.currentUser?.displayName || 'tester'
             const image = auth.currentUser?.photoURL || 'https://images.macrumors.com/t/n4CqVR2eujJL-GkUPhv1oao_PmI=/1600x/article-new/2019/04/guest-user-250x250.jpg'
-            await setCookies(email, name, image)
+            await setCookies(email, name, image, uid)
             redirectToHome()
         } catch (e: any) {
             console.log({ error: e.error, msg: e.message })

@@ -71,8 +71,10 @@ export function Chat() {
             return () => unsubscribe();
         }
 
-        onLoad()
-    }, []);
+        if (auth.currentUser) {
+            onLoad()
+        }
+    }, [auth.currentUser]);
 
     if (currentPath.startsWith('/login') || currentPath.startsWith('/signup')){
         return <></>
@@ -88,7 +90,7 @@ export function Chat() {
                     <div className="h-full flex w-full">
                         {chats.length ?
                             <>
-                                <div className={`${selectedChat.chatId && "md:block hidden"} md:w-2/5 w-full border-r-1 border-gray-400`}>
+                                <div className={`${selectedChat.chatId && "md:block hidden"} overflow-y-scroll md:w-2/5 w-full min-w-[250px] border-r-1 border-gray-400`}>
                                     {
                                         chats.map((chat: any) => {
                                             return <UserCard setSelectedChat={setSelectedChat} selectedChat={selectedChat} key={chat.id} image={chat.otherUser.image} name={chat.otherUser.name} username={chat.otherUser.username} chatId={chat.id} />
@@ -100,7 +102,7 @@ export function Chat() {
                                         selectedChat.chatId ?
                                             <div className="flex flex-col justify-end h-full w-full relative">
                                                 <div onClick={exitChat} className="sticky top-0 w-full left-0 p-2 bg-slate-600 hover:bg-slate-700 text-white cursor-pointer">{`< ${selectedChat.name}`}</div>
-                                                <div className="flex flex-col overflow-y-scroll gap-1 p-2 mb-1" id="messageRoom">
+                                                <div className="flex flex-col h-full overflow-y-scroll gap-1 p-2 mb-1" id="messageRoom">
                                                     {
                                                         selectedChat.messages ? selectedChat.messages.map(messageGroup => {
                                                             return (
