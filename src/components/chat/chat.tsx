@@ -7,11 +7,10 @@ import UserCard from "./userCard"
 import { getCookies } from "@/utils/firebase"
 import ChatInput from "./chatInput"
 import moment from "moment"
+import { usePathname } from "next/navigation"
 
 export function Chat() {
-    // return (
-    //     <></>
-    // )
+    const currentPath = usePathname();
     const [selectedChat, setSelectedChat] = useState({ name: "", username: "", messages: [{ date: "", messages: [{ content: "", senderID: "", timeCreated: 0 }] }], chatId: "" })
     const [user, setUser] = useState("")
     const [chats, setChats]: Array<any> = useState([])
@@ -74,6 +73,10 @@ export function Chat() {
 
         onLoad()
     }, []);
+
+    if (currentPath.startsWith('/login') || currentPath.startsWith('/signup')){
+        return <></>
+      }
 
     return (
         <>
