@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 interface FileDnDProps {
@@ -14,7 +15,7 @@ const loadFile = (file: File): string => {
   return blobUrl;
 };
 
-const FileDnD: any = ({onChange, initialImages = []}: any) => {
+const FileDnD: any = ({ onChange, initialImages = [] }: any) => {
   const [files, setFiles] = useState<File[]>(initialImages);
   useEffect(() => {
     onChange(files)
@@ -52,7 +53,7 @@ const FileDnD: any = ({onChange, initialImages = []}: any) => {
           <p className="m-0">Drag your files here or click in this area.</p>
         </div>
       </div>
-      {files.length > 0 && <hr className='border-gray-300 mt-4 border group-hover:border-gray-400 duration-200'/>}
+      {files.length > 0 && <hr className='border-gray-300 mt-4 border group-hover:border-gray-400 duration-200' />}
 
       {files.length > 0 && (
         <div className="grid grid-cols-2 gap-4 mt-4 md:grid-cols-6">
@@ -74,7 +75,9 @@ const FileDnD: any = ({onChange, initialImages = []}: any) => {
               </button>
 
               {file.type.includes('image/') && (
-                <img
+                <Image
+                  width={200}
+                  height={200}
                   className="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview"
                   src={loadFile(file)}
                   alt={file.name}

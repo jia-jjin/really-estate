@@ -9,6 +9,7 @@ import { FormEvent } from "react"
 import { Button } from "@nextui-org/react"
 import Link from "next/link"
 import { auth, provider, db } from "@/firebase/config"
+import Image from "next/image"
 
 export default function SignUp() {
     const [signUpDetails, setSignUpDetails] = useState({ image: 'https://images.macrumors.com/t/n4CqVR2eujJL-GkUPhv1oao_PmI=/1600x/article-new/2019/04/guest-user-250x250.jpg' })
@@ -74,7 +75,7 @@ export default function SignUp() {
     return (
         <div className=" flex flex-col justify-center items-center bg-white p-2 py-6">
             <Link scroll={true} href="/" className="">
-                <img src="/reallyestate-logo.png" width={300} className="mx-auto" />
+                <Image alt="app-logo" src="/reallyestate-logo.png" height={300} width={300} className="mx-auto" />
             </Link>
             <div className="border border-black w-full sm:max-w-md mt-6 p-8 bg-gray-200 shadow-md sm:rounded-lg text-black ">
                 <div className="w-full flex justify-center"><h1 className='text-5xl font-semibold mb-6 mx-auto'>Sign Up</h1></div>
@@ -94,7 +95,7 @@ export default function SignUp() {
                     <span className="flex-shrink mx-4">or</span>
                     <div className="flex-grow border-t border-gray-400"></div>
                 </div>
-                <div className='flex flex-row justify-center'><Button variant='faded' className='w-full' onClick={onGoogleSignIn}><img alt='google-logo' src='./google.svg' />Sign up with Google</Button></div>
+                <div className='flex flex-row justify-center'><Button variant='faded' className='w-full' onClick={onGoogleSignIn}><Image alt='google-logo' src='./google.svg' width={20} height={20} />Sign up with Google</Button></div>
                 <div className="mt-4 mx-auto flex justify-center"><a className="underline text-blue-800" href="/login">Already have an account?</a></div>
             </div>
         </div>

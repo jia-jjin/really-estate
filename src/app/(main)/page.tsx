@@ -1,12 +1,13 @@
 'use client'
 import { Button, Input, } from '@nextui-org/react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Page() {
     return (
         <div className="mx-auto pb-[50px]">
             <div className='h-[400px] md:m-12 m-4 relative group overflow-hidden'>
-                <img src="/home-hero-bg.jpeg" alt="" className='size-full object-cover scale-100 group-hover:scale-110 duration-200 ' />
+                <Image width={1000} height={500} src="/home-hero-bg.jpeg" alt="" className='size-full object-cover scale-100 group-hover:scale-110 duration-200 ' />
                 <div className="size-full bg-black/40 group-hover:bg-black/60 duration-200 z-10 absolute top-0 left-0 flex items-center">
                     <div className="container mx-auto flex flex-col items-center justify-center">
                         <div className="md:p-12 p-6 border-white w-fit border-4 flex items-center justify-center">
@@ -52,7 +53,7 @@ export default function Page() {
                         </div>
                     </div>
                     <div className='rounded-2xl absolute top-0 left-0 -z-10 scale-50 group-hover:[scale:2.8] [perspective:300px] group-hover:top-32 group-hover:left-20 md:group-hover:left-44 duration-300'>
-                        <img src="/home-hero-bg.jpeg" alt="" className='group-hover:ms-[200px] object-cover size-full rounded-2xl [transform:rotateY(0)] duration-300 group-hover:[transform:rotateY(-5deg)] shadow-xl' />
+                        <Image height={1000} width={1000} src="/home-hero-bg.jpeg" alt="" className='group-hover:ms-[200px] object-cover size-full rounded-2xl [transform:rotateY(0)] duration-300 group-hover:[transform:rotateY(-5deg)] shadow-xl' />
                     </div>
                 </div>
                 <div className="sm:hidden block relative">
@@ -83,8 +84,8 @@ export default function Page() {
                     <div className="w-full min-h-[200px] relative group [transform:rotateX(5deg)] hover:[transform:rotateX(0deg)] duration-200">
                         <div className=" pointer-events-none size-full absolute group-hover:bg-black/20 bg-transparent top-0 left-0 group-hover:[scale:1.02] duration-200"></div>
                         <Link href={'/property_list/new_launches'} scroll={true}>
-                            <div className="relative flex flex-col gap-4 items-center justify-center size-full bg-yellow-300 group-hover:bg-yellow-400 group-hover:scale-90 duration-200 group-hover:shadow-2xl shadow-md z-50 cursor-pointer">
-                                <img src="/condo.jpg" alt="" className='size-full object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-80 duration-200' />
+                            <div className="relative flex flex-col gap-4 p-2 items-center justify-center size-full bg-yellow-300 group-hover:bg-yellow-400 group-hover:scale-90 duration-200 group-hover:shadow-2xl shadow-md z-50 cursor-pointer">
+                                <Image height={1000} width={1000} src="/condo.jpg" alt="" className='size-full object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-80 duration-200' />
                                 <div className="p-4 bg-transparent rounded-xl z-10 group-hover:bg-white group-hover:shadow-xl duration-200"><h1 className='text-3xl font-bold drop-shadow-xl text-gray-800 text-center'>Explore all recent new launches!</h1></div>
                                 <Button variant='solid' color='warning' size='lg' className='shadow-md'>View Now</Button>
                             </div>
@@ -94,7 +95,7 @@ export default function Page() {
                         <div className=" pointer-events-none size-full absolute group-hover:bg-black/20 bg-transparent top-0 left-0 group-hover:[scale:1.02] duration-200"></div>
                         <Link href={'/property_list/all'} scroll={true}>
                             <div className="relative flex flex-col gap-4 items-center justify-center size-full bg-yellow-300 group-hover:bg-yellow-400 group-hover:scale-90 duration-200 group-hover:shadow-2xl shadow-md z-50 cursor-pointer">
-                                <img src="/dream.webp" alt="" className='size-full object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-80 duration-200' />
+                                <Image height={1000} width={1000} src="/dream.webp" alt="" className='size-full object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-80 duration-200' />
                                 <div className="p-4 bg-transparent rounded-xl z-10 group-hover:bg-white group-hover:shadow-xl duration-200"><h1 className='text-3xl font-bold drop-shadow-xl text-gray-800 text-center'>Check out all properties!</h1></div>
                                 <Button variant='solid' color='warning' size='lg' className='shadow-md'>View Now</Button>
                             </div>

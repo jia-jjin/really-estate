@@ -8,6 +8,7 @@ import { deleteObject, ref, uploadBytes } from "firebase/storage";
 import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { db, storage } from "@/firebase/config";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const EditProperty = (props: any) => {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -332,7 +333,7 @@ const EditProperty = (props: any) => {
         <>
             <div onClick={onOpen} className="w-full flex xs:flex-row gap-4 flex-col rounded-xl cursor-pointer mt-2 bg-slate-300 min-h-[200px] p-4 duration-200 hover:bg-slate-200 shadow-xl">
                 <div className="xs:w-[200px] w-full h-[200px] rounded-xl">
-                    <img src={coverImage[0]} alt="" className="rounded-xl object-cover h-full w-full" />
+                    <Image height={1000} width={1000} src={coverImage[0]} alt="property_image" className="rounded-xl object-cover h-full w-full" />
                 </div>
                 <div className="flex items-center">
                     <div>

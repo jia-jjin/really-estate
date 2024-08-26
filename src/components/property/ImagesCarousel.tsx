@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { useState } from "react"
 import { Carousel } from "react-responsive-carousel"
 
@@ -16,8 +17,8 @@ const ImagesCarousel = ({ images, isVisible, setIsVisible }: any) => {
                         <Carousel className="max-w-3xl" infiniteLoop>
                             {images.map((image: string, index: number) => {
                                 return (
-                                    <div className="w-full h-[500px]">
-                                        <img src={image} className="object-cover size-full" />
+                                    <div key={'image' + index} className="w-full h-[500px]">
+                                        <Image alt={'image'+index} width={1000} height={1000} src={image} className="object-cover size-full" />
                                         <p className="legend">Image {index + 1}</p>
                                     </div>
                                 )

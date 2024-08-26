@@ -1,6 +1,7 @@
 'use client'
 import { db } from "@/firebase/config";
 import { collection, limit, onSnapshot, orderBy, query, } from "firebase/firestore";
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react"
 
 
@@ -65,7 +66,7 @@ const UserCard = (props: any) => {
     }
     return (
         <div className={`w-full md:border-0 border-b border-gray-400 flex items-center gap-4 p-3 duration-200 transition-all cursor-pointer ${selectedChat.chatId === chatId ? "bg-red-400" : "bg-transparent hover:bg-red-300 "}`} onClick={() => onClickHandler()} >
-            <img src={image} alt={name + "_pfp"} width={'50px'} className="rounded-full object-cover" />
+            <Image src={image} alt={name + "_pfp"} width={50} height={50} className="rounded-full object-cover" />
             <div className="overflow-hidden">
                 <h1 className="font-bold text-lg">{name}</h1>
                 <p className="text-sm truncate">{messages[messages.length-1]?.messages[messages[messages.length-1].messages.length - 1]?.content}</p>

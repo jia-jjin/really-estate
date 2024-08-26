@@ -30,6 +30,7 @@ import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { getCookies } from "@/utils/firebase";
 import { toast } from "react-toastify";
 import moment from "moment";
+import Image from "next/image";
 
 export default function Page({ params: { type } }: { params: any }) {
     const [properties, setProperties] = useState<any>();
@@ -114,6 +115,7 @@ export default function Page({ params: { type } }: { params: any }) {
         await setProperties(searchResults);
         setIsLoading(false);
     };
+
     useEffect(() => {
         getProperty();
     }, []);
@@ -124,7 +126,7 @@ export default function Page({ params: { type } }: { params: any }) {
     }
 
     const startChat = async (listerID: string, listerName: string, propertyName: string) => {
-        if (!userID){
+        if (!userID) {
             toast.error("Please sign in first!")
             return
         }
@@ -176,7 +178,7 @@ export default function Page({ params: { type } }: { params: any }) {
                         placeholder="Search for a location..."
                         endContent={
                             <div className="pointer-events-none flex items-center">
-                                <img src="/search.svg" alt="search" width={20} />
+                                <Image src="/search.svg" alt="search" width={20} height={20} />
                             </div>
                         }
                         className="max-w-[300px] border-gray-400 border-1 rounded-xl"
@@ -240,12 +242,12 @@ export default function Page({ params: { type } }: { params: any }) {
                             <h1 className="text-5xl opacity-40">🏢</h1>
                             <h1 className="text-xl opacity-40">No properties found!</h1>
                         </div>
-                        : properties.map((property: any) => {
+                        : properties.map((property: any, index: number) => {
                             return (
-                                <Card className="w-[400px]">
+                                <Card className="w-[400px]" key={'property' + index}>
                                     <Link scroll={true} href={`/property/${property.id}`} className="opacity-100 hover:opacity-90 cursor-pointer transition-all duration-200">
                                         <CardHeader className="p-0 w-full h-[250px]">
-                                            <img src={property.images[0]} alt="" className="object-cover w-full h-full" />
+                                            <Image height={1000} width={1000} src={property.images[0]} alt="" className="object-cover w-full h-full" />
                                         </CardHeader>
                                         <hr />
                                         <CardBody className="pb-0 pt-2 px-4 flex-col items-start">
@@ -265,7 +267,12 @@ export default function Page({ params: { type } }: { params: any }) {
                                     </Link>
                                     <hr />
                                     <CardFooter className="py-4 px-4 flex justify-between">
-                                        <div className="space-x-3 flex items-center"><img src={property.lister.image} alt="" width={'40px'} /><h1>Listed by <span className="font-bold">{property.lister.name}</span></h1></div>
+                                        <div className="space-x-3 flex items-center">
+                                            <Image height={40} width={40} src={property.lister.image} alt="agent-pfp" />
+                                            <h1>
+                                                Listed by <span className="font-bold">{property.lister.name}</span>
+                                            </h1>
+                                        </div>
                                         <Button variant="bordered" color="secondary" isDisabled={userID == property.lister.id} onClick={() => startChat(property.lister.id, property.lister.name, property.name)}>Chat with Agent</Button>
                                     </CardFooter>
                                 </Card>

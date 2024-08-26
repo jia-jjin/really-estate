@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import { provider, auth } from '@/firebase/config'
 import { cookies } from 'next/headers'
+import Image from 'next/image'
 
 export default function Login() {
     const [signInDetails, setSignInDetails] = useState({ email: "", password: "" })
@@ -59,7 +60,7 @@ export default function Login() {
     return (
         <div className=" flex flex-col justify-center items-center bg-white p-2 py-6">
             <Link scroll={true} href="/" >
-                <img src="./reallyestate-logo.png" width={300} className="mx-auto" />
+                <Image src="/reallyestate-logo.png" height={300} width={300} className="mx-auto" alt="app-logo" />
             </Link>
             <div className="border border-black w-full sm:max-w-md mt-6 p-8 bg-gray-200 shadow-md sm:rounded-lg text-black ">
                 <div className="w-full flex justify-center"><h1 className='text-5xl font-semibold mb-6 mx-auto'>Sign In</h1></div>
@@ -75,8 +76,8 @@ export default function Login() {
                     <span className="flex-shrink mx-4">or</span>
                     <div className="flex-grow border-t border-gray-400"></div>
                 </div>
-                <div className='flex flex-row justify-center'><Button variant='faded' className='w-full' onClick={onGoogleSignIn}><img alt='google-logo' src='./google.svg' />Sign in with Google</Button></div>
-                <div className="mt-4 mx-auto flex justify-center"><a className="underline text-blue-800" href="/signup">Haven't registered?</a></div>
+                <div className='flex flex-row justify-center'><Button variant='faded' className='w-full' onClick={onGoogleSignIn}><Image alt='google-logo' src='/google.svg' width={20} height={20} />Sign in with Google</Button></div>
+                <div className="mt-4 mx-auto flex justify-center"><a className="underline text-blue-800" href="/signup">{"Haven't registered?"}</a></div>
             </div>
         </div>
     )

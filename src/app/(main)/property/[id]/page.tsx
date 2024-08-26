@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import MortgageCalculator from "@/components/property/MortgageCalculator";
 import Swal from "sweetalert2";
 import { auth } from "@/firebase/config";
+import Image from "next/image";
 
 const Property = ({ params: { id } }: { params: any }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -191,7 +192,7 @@ const Property = ({ params: { id } }: { params: any }) => {
                     <ImagesCarousel images={propertyFound.images} isVisible={isVisible} setIsVisible={setIsVisible} />
                     <div className="max-w-3xl sm:h-[500px] h-[200px] rounded-xl mx-auto relative group">
                         {propertyFound.images.length > 1 ? <>
-                            <img src={propertyFound.images[0]} alt="" className="rounded-xl cursor-pointer object-cover h-full w-full" onClick={() => setIsVisible(true)} />
+                            <Image height={1000} width={1000} src={propertyFound.images[0]} alt="" className="rounded-xl cursor-pointer object-cover h-full w-full" onClick={() => setIsVisible(true)} />
                             <div className="size-full absolute top-0 left-0 bg-black rounded-xl group-hover:opacity-40 opacity-0 pointer-events-none duration-250">
                             </div>
                             <div className="size-full absolute top-0 left-0 rounded-xl group-hover:opacity-80 opacity-0 pointer-events-none duration-250">
@@ -203,7 +204,7 @@ const Property = ({ params: { id } }: { params: any }) => {
                                     <p className="m-0 text-lg">Click to see more images.</p>
                                 </div>
                             </div>
-                        </> : <img src={propertyFound.images[0]} alt="" className="rounded-xl object-cover h-full w-full" />}
+                        </> : <Image height={1000} width={1000} src={propertyFound.images[0]} alt="" className="rounded-xl object-cover h-full w-full" />}
                     </div>
                     <div className="flex h-full lg:flex-row flex-col">
                         <div className="lg:w-2/3 w-full">
@@ -247,9 +248,9 @@ const Property = ({ params: { id } }: { params: any }) => {
                             <div className="my-10">
                                 <h1 className="text-2xl font-bold">Amenities</h1>
                                 <div className="grid grid-cols-10 mt-6 text-gray-600 [&>*]:col-span-5 [&>*]:border-b [&>*]:border-gray-200 [&>*]:pb-2 [&>*]:mx-3 [&>*]:mb-3">
-                                    {propertyFound.amenities.map((amenity: any) => {
+                                    {propertyFound.amenities.map((amenity: any, index:number) => {
                                         return (
-                                            <div className="">
+                                            <div className="" key={amenity + "-" + index}>
                                                 <p className="font-semibold">✅ {amenity}</p>
                                             </div>
                                         )
@@ -300,7 +301,7 @@ const Property = ({ params: { id } }: { params: any }) => {
                         <div className="lg:w-1/3 p-8 h-fit lg:sticky block top-20">
                             <div className="size-full rounded-xl border-gray-300 border p-6 max-w-[300px] mx-auto">
                                 <div className="flex gap-4 items-center">
-                                    <img src={propertyFound.lister.image} className="object-cover rounded-full w-16" />
+                                    <Image height={1000} width={1000} src={propertyFound.lister.image} alt="agent_pfp" className="object-cover rounded-full w-16" />
                                     <div>
                                         <h1 className="text-lg font-bold p-0 m-0">{propertyFound.lister.name}</h1>
                                         <p className="p-0 m-0 text-slate-600">{propertyFound.lister.username}</p>

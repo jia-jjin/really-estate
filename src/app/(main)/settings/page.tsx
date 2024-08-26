@@ -10,6 +10,7 @@ import { auth, db } from "@/firebase/config";
 import { easeIn, useReducedMotion } from "framer-motion";
 import { toast } from "react-toastify";
 import moment from "moment";
+import Image from "next/image";
 
 export default function Settings() {
     const [reservations, setReservations] = useState<Array<any>>([])
@@ -293,7 +294,7 @@ export default function Settings() {
         <div className="container mx-auto py-6 flex flex-col">
             <div className="w-full flex justify-between items-center mb-6">
                 <div className="w-20 flex gap-4 items-center">
-                    <img src={image} className="object-cover rounded-full w-full" />
+                    <Image height={80} width={80} alt="user_image" src={image} className="object-cover rounded-full w-full" />
                     <div>
                         <h1 className="text-lg font-bold p-0 m-0">{name}</h1>
                         <p className="p-0 m-0">{email}</p>
@@ -311,7 +312,7 @@ export default function Settings() {
                             {
                                 reservations.map((reservation: any, index: number) => {
                                     return (
-                                        <div className='rounded-xl w-full bg-slate-300 mb-3 shadow-md border border-black'>
+                                        <div key={'reservation' + index} className='rounded-xl w-full bg-slate-300 mb-3 shadow-md border border-black'>
                                             <div className="flex justify-between">
                                                 <div className="p-6">
                                                     <h1 className="text-xl font-semibold underline underline-offset-2">Property: {reservation.property.name}</h1>

@@ -10,6 +10,7 @@ import { auth } from "@/firebase/config";
 import { signOut } from "firebase/auth";
 import "@/../public/reallyestate-logo.png";
 import { profile } from "console";
+import Image from "next/image";
 
 const Topbar = () => {
   const userLogout = async () => {
@@ -62,21 +63,22 @@ const Topbar = () => {
     },
   ];
 
-  useEffect(() => {
-    const onLoad = async () => {
-      setProfileIsLoading(true)
-      try {
-        let res: any = await getCookies()
-        setUsername(res.username)
-        setEmail(res.email)
-        setImage(res.image)
-        setUserType(res.type)
-        setProfileIsLoading(false)
-      } catch (e: any) {
-        console.error({ msg: e.message, error: e.errorCode })
-        return
-      }
+  const onLoad = async () => {
+    setProfileIsLoading(true)
+    try {
+      let res: any = await getCookies()
+      setUsername(res.username)
+      setEmail(res.email)
+      setImage(res.image)
+      setUserType(res.type)
+      setProfileIsLoading(false)
+    } catch (e: any) {
+      console.error({ msg: e.message, error: e.errorCode })
+      return
     }
+  }
+
+  useEffect(() => {
     onLoad()
   }, [auth.currentUser]);
 
@@ -157,7 +159,7 @@ const Topbar = () => {
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
           <Link scroll={true} href="/" className="">
-            <img src="/reallyestate-logo.png" width={200} className="mx-auto" />
+            <Image src="/reallyestate-logo.png" width={200} height={800} alt="logo" className="mx-auto" />
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -165,7 +167,7 @@ const Topbar = () => {
       <NavbarContent className="hidden sm:flex gap-6" justify="center">
         <NavbarBrand>
           <Link scroll={true} href="/" className="">
-            <img src="/reallyestate-logo.png" width={200} className="mx-auto" />
+            <Image src="/reallyestate-logo.png" width={200} height={800} alt="logo" className="mx-auto" />
           </Link>
         </NavbarBrand>
         {menuItems.map((item, index) => {
@@ -244,7 +246,7 @@ const Topbar = () => {
         {menuItems.map((item, index) => (
           <NavbarItem className="flex justify-center h-[50px] w-fit" isActive={item.name !== "All Properties" ? item.link === currentPath : currentPath.includes('property/') || currentPath.includes('property_list/all')} key={`${item.name}-${index}`}>
             <NextUILink color={item.name !== "All Properties" ? item.link === currentPath ? "secondary" : "foreground" : currentPath.includes('property/') || currentPath.includes('property_list/all') ? "secondary" : "foreground"}>
-              <Link scroll={true} href={item.link} onClick={()=>setIsMenuOpen(false)}>
+              <Link scroll={true} href={item.link} onClick={() => setIsMenuOpen(false)}>
                 {item.name}
               </Link>
             </NextUILink>

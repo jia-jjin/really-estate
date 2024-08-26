@@ -86,9 +86,9 @@ const ManageProperties = () => {
                             <ModalBody className="p-4 flex flex-col items-center min-h-[400px]">
                                 {isLoading ? <div className="size-full flex flex-col justify-center h-[400px]"><Spinner size="lg" label="Loading..." color="warning" /></div>
                                     : properties.length
-                                        ? properties.map((property: Object) => {
+                                        ? properties.map((property: Object, index: number) => {
                                             return (
-                                                <EditProperty property={property} />
+                                                <EditProperty key={'edit_property'+index} property={property} />
                                             )
                                         }) : <div className="h-[400px] flex flex-col gap-4 justify-center items-center">
                                             <h1 className="text-5xl opacity-40">🏢</h1>
