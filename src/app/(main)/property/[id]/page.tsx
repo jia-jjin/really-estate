@@ -110,10 +110,6 @@ const Property = ({ params: { id } }: { params: any }) => {
         getProperty()
     }, [])
 
-    useEffect(() => {
-        console.log(propertyFound)
-    }, [propertyFound])
-
     const bookReservation = async () => {
         if (!userID) {
             toast.error("Please sign in first!")

@@ -300,9 +300,9 @@ export default function Settings() {
                         <p className="p-0 m-0">{email}</p>
                     </div>
                 </div>
-                <Button color="danger" variant="ghost" onClick={onLogoutHandler}>
+                {/* <Button color="danger" variant="ghost" onClick={onLogoutHandler}>
                     Log out
-                </Button>
+                </Button> */}
             </div>
             <div className="flex gap-4 md:flex-row flex-col">
                 <Card className="w-full h-fit">
