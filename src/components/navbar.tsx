@@ -80,6 +80,10 @@ const Topbar = () => {
 
   useEffect(() => {
     onLoad()
+  }, []);
+  
+  useEffect(() => {
+    onLoad()
   }, [auth.currentUser]);
 
   const onLogoutHandler = () => {
