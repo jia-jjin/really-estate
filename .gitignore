@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# firebase admin cloud storage configs
+firebaseAdmin.js
+really-estate-20da2-firebase-adminsdk-o0eac-e08994a8fb.json
