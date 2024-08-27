@@ -27,6 +27,7 @@ export function Chat() {
     const onClickChat = () => {
         const chatspace = document.getElementById('chatspace')
         chatspace?.classList.toggle('hidden')
+        exitChat() 
     }
 
     const exitChat = () => {
