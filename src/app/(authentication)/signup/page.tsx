@@ -68,6 +68,16 @@ export default function SignUp() {
             const email = auth.currentUser?.email || 'test@gmail.com'
             const name = auth.currentUser?.displayName || 'tester'
             const image = auth.currentUser?.photoURL || 'https://images.macrumors.com/t/n4CqVR2eujJL-GkUPhv1oao_PmI=/1600x/article-new/2019/04/guest-user-250x250.jpg'
+            const userRef = doc(db, 'users', uid);
+            const username = name.split(' ').join('') + Math.floor((Math.random() * 10000))
+            await setDoc(userRef, {
+                username: username,
+                name: name,
+                email: email,
+                image: image,
+                type: "user",
+                phone_number: ""
+            });
             await setCookies(email, name, image, uid)
             redirectToHome()
         } catch (e: any) {

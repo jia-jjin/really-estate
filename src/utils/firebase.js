@@ -42,22 +42,8 @@ export const checkUserLogin = async (email, name, image, uid) => {
         ...doc.data(),
         id: doc.id
     }))[0]
-    if (!userInfo) {
-        const username = name.split(' ').join('') + Math.floor((Math.random() * 10000))
-        const userRef = doc(db, 'users', uid);
-        await setDoc(userRef, {
-            username: username,
-            name: name,
-            email: email,
-            image: image,
-            type: "user",
-            phone_number: ""
-        });
-        return await checkUserLogin(email, name)
-    } else {
-        // console.log("user found!", userInfo)
-        return userInfo
-    }
+    return userInfo
+
     // } else {
     //     console.log('no user logged in')
     //     return null

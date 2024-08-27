@@ -52,7 +52,7 @@ const ManageProperties = () => {
                         setIsLoading(false)
                     }, 2000);
                 }, (error) => {
-                    console.error('Error fetching data:', error.message);
+                    console.error('Error fetching data for properties:', error.message);
                 });
 
 

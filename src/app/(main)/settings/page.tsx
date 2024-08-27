@@ -283,7 +283,6 @@ export default function Settings() {
         }
     }
 
-    console.log(auth.currentUser)
 
     if (profileIsLoading || reservationsIsLoading)
         return (

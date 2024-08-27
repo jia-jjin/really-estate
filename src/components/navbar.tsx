@@ -92,16 +92,18 @@ const Topbar = () => {
       confirmButtonText: "Logout"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        setUsername('')
-        setEmail('')
-        setImage('')
-        setUserType('')
+        setProfileIsLoading(true)
         let res: any = await userLogout()
         Swal.fire({
           title: res.status >= 400 ? "Error" : "Success",
           text: res.msg,
           icon: res.status >= 400 ? "error" : "success"
         })
+        setUsername('')
+        setEmail('')
+        setImage('')
+        setUserType('')
+        setProfileIsLoading(false)
       }
     });
   }

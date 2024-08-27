@@ -3,7 +3,7 @@
 import { getDoc, doc, addDoc, collection, getDocs, or, query, where, and } from "firebase/firestore";
 import { db, storage } from "@/firebase/config";
 import { BreadcrumbItem, Breadcrumbs, Button, image, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spinner, useDisclosure } from "@nextui-org/react";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import Error from "next/error";
@@ -97,13 +97,19 @@ const Property = ({ params: { id } }: { params: any }) => {
                         tempImages.push(tempImage)
                     })
                 )
+                const replacedText = docSnapshot.data().description.split('\n').map((word: String, index: number) => (
+                    <Fragment key={word + "-" + index}>
+                        {word}
+                        {index < docSnapshot.data().description.split('\n').length - 1 && <br />}
+                    </Fragment>
+                ));
                 const listerRef = doc(db, 'users', docSnapshot.data().owner)
                 const lister = await getDoc(listerRef)
                 let listerData = {}
                 if (lister.exists()) {
                     listerData = { id: lister.id, ...lister.data() }
                 }
-                setPropertyFound({ ...docSnapshot.data(), id: docSnapshot.id, images: tempImages, lister: listerData, })
+                setPropertyFound({ ...docSnapshot.data(), description: replacedText, id: docSnapshot.id, images: tempImages, lister: listerData, })
             }
             setIsLoading(false)
         }
@@ -238,13 +244,17 @@ const Property = ({ params: { id } }: { params: any }) => {
                             <hr className="border border-gray-300" />
                             <div className="my-10">
                                 <h1 className="text-2xl font-bold">Description</h1>
-                                <h1 className="mt-6 ms-3">{propertyFound.description}</h1>
+                                <h1 className="mt-6 ms-3">
+                                    {/* {propertyFound.description.replace(/\r?\n/g, "<br />")} */}
+                                    {propertyFound.description}
+                                    {/* hello \n djis */}
+                                </h1>
                             </div>
                             <hr className="border border-gray-300" />
                             <div className="my-10">
                                 <h1 className="text-2xl font-bold">Amenities</h1>
                                 <div className="grid grid-cols-10 mt-6 text-gray-600 [&>*]:col-span-5 [&>*]:border-b [&>*]:border-gray-200 [&>*]:pb-2 [&>*]:mx-3 [&>*]:mb-3">
-                                    {propertyFound.amenities.map((amenity: any, index:number) => {
+                                    {propertyFound.amenities.map((amenity: any, index: number) => {
                                         return (
                                             <div className="" key={amenity + "-" + index}>
                                                 <p className="font-semibold">✅ {amenity}</p>

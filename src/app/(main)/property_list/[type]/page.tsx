@@ -170,68 +170,71 @@ export default function Page({ params: { type } }: { params: any }) {
                 </Breadcrumbs>
             </div>
             <hr />
-            <div className="w-full my-4 flex justify-between items-center xs:flex-row flex-col gap-2">
-                <div className="flex gap-2 w-full lg:flex-row flex-col xs:items-start items-center">
+            <div className="w-full my-4 flex justify-start items-center xs:flex-row flex-col gap-4">
+                <div className="flex gap-2 lg:flex-row flex-col xs:items-start items-center">
                     <Input
                         type="text"
                         onChange={onSearchChangeHandler}
                         placeholder="Search for a location..."
-                        endContent={
-                            <div className="pointer-events-none flex items-center">
-                                <Image src="/search.svg" alt="search" width={20} height={20} />
-                            </div>
-                        }
+                        // endContent={
+                        //     <div className="pointer-events-none flex items-center">
+                        //         <Image src="/search.svg" alt="search" width={20} height={20} />
+                        //     </div>
+                        // }
                         className="max-w-[300px] border-gray-400 border-1 rounded-xl"
                     />
-                    <div className="flex gap-2">
-                        <Dropdown>
-                            <DropdownTrigger>
-                                <Button variant="bordered">{selectedValue}</Button>
-                            </DropdownTrigger>
-                            <DropdownMenu
-                                variant="faded"
-                                aria-label="Static Actions"
-                                closeOnSelect={false}
-                                selectionMode="multiple"
-                                selectedKeys={selectedBeds}
-                                onSelectionChange={setSelectedBeds}
-                                disallowEmptySelection={false}
-                            >
-                                <DropdownItem key="0">Studio</DropdownItem>
-                                <DropdownItem key="1">1 bedroom</DropdownItem>
-                                <DropdownItem key="2">2 bedrooms</DropdownItem>
-                                <DropdownItem key="3">3 bedrooms</DropdownItem>
-                                <DropdownItem key="3++">3++ bedrooms</DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
-                        <Popover placement="bottom" showArrow offset={5}>
-                            <PopoverTrigger>
-                                <Button color="default" variant="bordered">RM {parseInt(priceRange.toString().split(',')[0]).toLocaleString()} ~ RM {parseInt(priceRange.toString().split(',')[1]).toLocaleString()}</Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="sm:w-[500px] w-[200px]">
-                                {(titleProps) => (
-                                    <div className="px-1 py-2 w-full">
-                                        <p className="text-small font-bold text-foreground">
-                                            Price
-                                        </p>
-                                        <Slider
-                                            onChange={setPriceRange}
-                                            label={" "}
-                                            step={type == 'rent' ? 100 : 10000}
-                                            minValue={0}
-                                            maxValue={type == 'rent' ? 50000 : 2000000}
-                                            defaultValue={priceRange}
-                                            getValue={(price) => `RM ${parseInt(price.toString().split(',')[0]).toLocaleString()} ~ RM ${parseInt(price.toString().split(',')[1]).toLocaleString()}`}
-                                        // formatOptions={{ style: "unit",  }}
-                                        // className="max-w-md"
-                                        />
-                                    </div>
-                                )}
-                            </PopoverContent>
-                        </Popover>
-                    </div>
+                    <Button variant="solid" color="secondary" onClick={() => getProperty()}>Search</Button>
                 </div>
-                <Button variant="solid" color="secondary" onClick={() => getProperty()}>Search</Button>
+                <div className="flex gap-2 items-center">
+                    <h1>Filters:</h1>
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <Button variant="bordered">{selectedValue}</Button>
+                        </DropdownTrigger>
+                        <DropdownMenu
+                            variant="faded"
+                            aria-label="Static Actions"
+                            closeOnSelect={false}
+                            selectionMode="multiple"
+                            selectedKeys={selectedBeds}
+                            onSelectionChange={setSelectedBeds}
+                            disallowEmptySelection={false}
+                            disabledKeys={['hint']}
+                        >
+                            <DropdownItem key="hint">Press search after selecting</DropdownItem>
+                            <DropdownItem key="0">Studio</DropdownItem>
+                            <DropdownItem key="1">1 bedroom</DropdownItem>
+                            <DropdownItem key="2">2 bedrooms</DropdownItem>
+                            <DropdownItem key="3">3 bedrooms</DropdownItem>
+                            <DropdownItem key="3++">3++ bedrooms</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                    <Popover placement="bottom" showArrow offset={5}>
+                        <PopoverTrigger>
+                            <Button color="default" variant="bordered">RM {parseInt(priceRange.toString().split(',')[0]).toLocaleString()} ~ RM {parseInt(priceRange.toString().split(',')[1]).toLocaleString()}</Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="sm:w-[500px] w-[200px]">
+                            {(titleProps) => (
+                                <div className="px-1 py-2 w-full">
+                                    <p className="text-small font-bold text-foreground">
+                                        Price <span className="font-normal">(press search after selecting)</span>
+                                    </p>
+                                    <Slider
+                                        onChange={setPriceRange}
+                                        label={" "}
+                                        step={type == 'rent' ? 100 : 10000}
+                                        minValue={0}
+                                        maxValue={type == 'rent' ? 50000 : 2000000}
+                                        defaultValue={priceRange}
+                                        getValue={(price) => `RM ${parseInt(price.toString().split(',')[0]).toLocaleString()} ~ RM ${parseInt(price.toString().split(',')[1]).toLocaleString()}`}
+                                    // formatOptions={{ style: "unit",  }}
+                                    // className="max-w-md"
+                                    />
+                                </div>
+                            )}
+                        </PopoverContent>
+                    </Popover>
+                </div>
             </div>
             <hr />
             {!isLoading ? <div className="mt-4 xs:px-0 px-2">

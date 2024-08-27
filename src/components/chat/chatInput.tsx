@@ -20,12 +20,13 @@ const ChatInput = (props: any) => {
             const message = messageContent
             setMessageContent('')
             if (message.trim()) {
-                const collectionRef: any = collection(db, 'chats', chatId, 'messages')
+                const collectionRef = collection(db, 'chats', chatId, 'messages')
                 console.log('submitted message')
                 await addDoc(collectionRef, {
                     content: message.trim(),
                     senderID: userId,
-                    timeCreated: moment().format()
+                    timeCreated: moment().format(),
+                    isRead: false
                 })
             }
             return
@@ -34,7 +35,7 @@ const ChatInput = (props: any) => {
         }
     }
     return (
-        <form action="" onSubmit={onSubmitHandler} className="flex gap-1">
+        <form action="" onSubmit={onSubmitHandler} className="flex gap-1 m-2">
             <input value={messageContent} placeholder="Send a message..." onChange={onChangeHandler} type="text" name="message" className="w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"></input>
             <input type="submit" hidden />
             <Button type="submit" color="secondary" isIconOnly>💬</Button>
