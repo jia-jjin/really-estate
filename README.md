@@ -31,7 +31,7 @@ Before you begin, ensure you have the following installed:
    # or
    yarn install
    ```
-3. Set up the firebase config variables Create a Firebase project in the Firebase Console.
+3. Create a Firebase project in the Firebase Console and enable Firebase Authentication and Firestore services.
 
    Add your Firebase project's configuration to a .env.local file at the root of your project:
 
