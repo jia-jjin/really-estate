@@ -124,7 +124,8 @@ const UserCard = (props: any) => {
             <div className="overflow-hidden w-full">
                 <div className="flex justify-between items-center w-full">
                     <h1 className="font-bold truncate">{name}</h1>
-                    <p className="text-sm text-nowrap">{lastMessageRef ? moment(lastMessageRef?.timeCreated).format('h:mm a') : <></>}</p>
+                    {/* <p>{moment().format('DD/MM/YYYY')}</p> */}
+                    <p className="text-sm text-nowrap">{lastMessageRef ? moment(lastMessageRef?.timeCreated).diff(new Date(), 'hours') > -24? moment(lastMessageRef?.timeCreated).format('h:mm a'): moment(lastMessageRef?.timeCreated).format('DD/MM/YYYY') : <></>}</p>
                 </div>
                 <div className="flex justify-between items-center w-full">
                     <p className={`text-sm truncate ${unreadMessages.length > 0 && "font-semibold"}`}>{lastMessageRef?.content}</p>

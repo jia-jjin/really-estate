@@ -91,7 +91,7 @@ export function Chat() {
             </Badge>
             <div id="chatspace" className="bg-slate-200 hidden md:w-[500px] xs:w-[300px] w-full" style={{ height: '400px' }}>
                 <div className="h-full flex w-full">
-                    {chats.length ?
+                    {chats.length?
                         <>
                             <div className={`${selectedChat.chatId && "md:block hidden"} overflow-x-auto overflow-y-auto md:w-2/5 w-full min-w-[250px] border-r-1 border-gray-400`}>
                                 {
@@ -133,8 +133,10 @@ export function Chat() {
                                         </div>
                                 }
                             </div>
-                        </> :
-                        <div className="size-full flex justify-center items-center"><h1 className="text-black">nothing here yet</h1></div>}
+                    </> : user?
+                        <div className="size-full flex justify-center items-center"><h1 className="text-black">No chats found.</h1></div>:
+                        <div className="size-full flex justify-center items-center"><h1 className="text-black">Please login first!</h1></div>
+                        }
                 </div>
             </div>
         </div>
